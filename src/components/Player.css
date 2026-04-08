@@ -1,0 +1,283 @@
+/* ══════════════════════════════════════
+   Player.css — Songify Glass Player Bar
+   ══════════════════════════════════════ */
+
+.player-root {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+/* ── Glass Bar ── */
+.player-bar {
+  display: flex;
+  align-items: center;
+  height: 88px;
+  padding: 0 28px;
+  background: rgba(6, 0, 0, 0.82);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.55);
+}
+
+.player-inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  gap: 16px;
+}
+
+/* ── Song Info (left third) ── */
+.player-song-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 260px;
+  min-width: 0;
+}
+
+.player-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #5c1a1a 0%, #2a0808 100%);
+  border: 1px solid rgba(232, 71, 42, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  flex-shrink: 0;
+  letter-spacing: -0.5px;
+}
+
+.player-meta {
+  min-width: 0;
+  flex: 1;
+}
+
+.player-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+
+.player-artist {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-like-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: rgba(255, 255, 255, 0.45);
+  transition: color 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+
+.player-like-btn:hover { color: rgba(255,255,255,0.85); transform: scale(1.15); }
+.player-like-btn.liked { color: #e8472a; }
+.player-like-btn.liked svg { fill: #e8472a; }
+
+/* ── Controls (center) ── */
+.player-controls {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.player-buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.player-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 6px;
+  transition: color 0.2s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-btn:hover { color: #fff; transform: scale(1.1); }
+
+.player-btn.active {
+  color: #e8472a;
+  position: relative;
+}
+
+.player-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #e8472a;
+}
+
+/* Play / Pause big button */
+.player-play-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  transition: transform 0.15s, background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 18px rgba(232, 71, 42, 0.25);
+}
+
+.player-play-btn:hover {
+  transform: scale(1.08);
+  background: #ffe5df;
+  box-shadow: 0 0 28px rgba(232, 71, 42, 0.5);
+}
+
+.player-play-btn:active { transform: scale(0.96); }
+
+/* Progress bar */
+.player-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.player-time {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  width: 34px;
+  font-variant-numeric: tabular-nums;
+}
+
+.player-time:last-child { text-align: right; }
+
+/* ── Range Inputs (shared) ── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+input[type="range"]:hover { background: rgba(255, 255, 255, 0.25); }
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  transition: width 0.15s, height 0.15s, opacity 0.15s;
+  opacity: 0;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb,
+input[type="range"]:active::-webkit-slider-thumb {
+  width: 13px;
+  height: 13px;
+  opacity: 1;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: width 0.15s, height 0.15s, opacity 0.15s;
+}
+
+input[type="range"]:hover::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  opacity: 1;
+}
+
+/* Dynamic fill trick via CSS custom property */
+.player-seek {
+  flex: 1;
+  --pct: 0%;
+  background: linear-gradient(
+    to right,
+    #e8472a var(--pct),
+    rgba(255, 255, 255, 0.15) var(--pct)
+  ) !important;
+}
+
+.player-seek:hover {
+  background: linear-gradient(
+    to right,
+    #ff5c3a var(--pct),
+    rgba(255, 255, 255, 0.25) var(--pct)
+  ) !important;
+}
+
+/* ── Volume (right third) ── */
+.player-volume {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 180px;
+  justify-content: flex-end;
+}
+
+.player-volume-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 6px;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.player-volume-btn:hover { color: #fff; }
+
+.player-volume-slider {
+  width: 88px;
+  --pct: 70%;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,0.85) var(--pct),
+    rgba(255,255,255,0.15) var(--pct)
+  ) !important;
+}
