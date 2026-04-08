@@ -25,7 +25,7 @@ useEffect(() => {
   } else {
     audioRef.current.pause();
   }
-}, [currentSong, isPlaying]);
+}, [isPlaying]);
 
   // Load new song when it changes
   useEffect(() => {
