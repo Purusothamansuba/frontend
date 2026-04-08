@@ -15,14 +15,17 @@ export function Player({ currentSong, isPlaying, onPlayPause, onNext, onPrevious
   const audioRef                = useRef(null);
 
   // Play / pause
-  useEffect(() => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.play().catch(() => {});
-    } else {
-      audioRef.current.pause();
-    }
-  }, [isPlaying]);
+useEffect(() => {
+  if (!audioRef.current || !currentSong) return;
+
+  audioRef.current.src = currentSong.file_url;
+
+  if (isPlaying) {
+    audioRef.current.play();
+  } else {
+    audioRef.current.pause();
+  }
+}, [currentSong, isPlaying]);
 
   // Load new song when it changes
   useEffect(() => {
