@@ -12,7 +12,7 @@ function App() {
   const [activeTab, setActiveTab] = useState("home");
   const [searchQuery, setSearchQuery] = useState("");
 
- /* useEffect(() => {
+ useEffect(() => {
     fetch(process.env.REACT_APP_API_BASE + "/songs/")
       .then((res) => res.json())
       .then((data) => {
@@ -20,33 +20,7 @@ function App() {
         setSongs(data);
       })
       .catch((err) => console.error("Error fetching songs:", err));
-  }, []); */
-
-  useEffect(() => {
-  setSongs([
-    {
-      id: 1,
-      title: "Demo Song",
-      artist: "Test Artist",
-      duration: 180,
-      file_url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-    },
-    {
-      id: 2,
-      title: "Another Track",
-      artist: "Sample Artist",
-      duration: 210,
-      file_url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
-    },
-    {
-      id: 3,
-      title: "Chill Beat",
-      artist: "LoFi Artist",
-      duration: 240,
-      file_url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
-    }
-  ]);
-}, []);
+  }, []); 
 
   const handlePlay = (song) => {
     if (currentSong?.id === song.id) {
