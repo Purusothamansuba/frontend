@@ -12,12 +12,13 @@ function App() {
   const [activeTab, setActiveTab] = useState("home");
   const [searchQuery, setSearchQuery] = useState("");
 
- useEffect(() => {
+  useEffect(() => {
     fetch(process.env.REACT_APP_API_BASE + "/songs/")
       .then((res) => res.json())
       .then((data) => {
         console.log("Songs:", data);
-        setSongs(data);
+        // Fix: Extract the 'results' array from the paginated response
+        setSongs(data.results || []);
       })
       .catch((err) => console.error("Error fetching songs:", err));
   }, []); 
@@ -58,7 +59,6 @@ function App() {
       <div className="sidebar-area">
         <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
-
       <div className="content-area">
         <div className="content-header">
           <h2 className="section-title">
@@ -71,7 +71,6 @@ function App() {
           </h2>
           <SearchBar value={searchQuery} onChange={setSearchQuery} />
         </div>
-
         <div className="songs-list">
           {filteredSongs.length > 0 ? (
             filteredSongs.map((song, index) => (
@@ -91,7 +90,6 @@ function App() {
           )}
         </div>
       </div>
-
       <div className="player-area">
         <Player
           currentSong={currentSong}
